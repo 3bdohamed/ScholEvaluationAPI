@@ -2,6 +2,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
+# Node.js is required because the csproj BuildFrontend target runs npm ci / npm run build
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl ca-certificates \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy project file and restore dependencies
 COPY ["ScholEvaluationAPI.csproj", "./"]
 RUN dotnet restore "ScholEvaluationAPI.csproj"
