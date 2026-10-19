@@ -10,7 +10,6 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.WebHost.UseUrls("http://*:5100");
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -76,11 +75,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+if (OperatingSystem.IsWindows() && app.Environment.IsDevelopment())
 {
-    FileName = "explorer.exe",
-    Arguments = $"http://{localIp}:5100",
-    UseShellExecute = true
-});
+    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+    {
+        FileName = "explorer.exe",
+        Arguments = $"http://{localIp}:5100",
+        UseShellExecute = true
+    });
+}
 
 app.Run();
