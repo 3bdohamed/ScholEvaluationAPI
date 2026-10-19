@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <NuGetAudit>false</NuGetAudit>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.23.0" />
+  </ItemGroup>
+
+  <Target Name="BuildFrontend" BeforeTargets="Build">
+    <Exec Command="npm ci"
+          WorkingDirectory="$(MSBuildProjectDirectory)\frontend"
+          Condition="!Exists('$(MSBuildProjectDirectory)\frontend\node_modules\next\package.json')" />
+    <Exec Command="npm run build"
+          WorkingDirectory="$(MSBuildProjectDirectory)\frontend" />
+    <ItemGroup>
+      <FrontendAsset Include="$(MSBuildProjectDirectory)\frontend\out\**\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(MSBuildProjectDirectory)\wwwroot" />
+    <Copy SourceFiles="@(FrontendAsset)"
+          DestinationFiles="@(FrontendAsset->'$(MSBuildProjectDirectory)\wwwroot\%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyFrontendToPublishDirectory" AfterTargets="Publish">
+    <ItemGroup>
+      <FrontendAsset Include="$(MSBuildProjectDirectory)\frontend\out\**\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(PublishDir)wwwroot" />
+    <Copy SourceFiles="@(FrontendAsset)"
+          DestinationFiles="@(FrontendAsset->'$(PublishDir)wwwroot\%(RecursiveDir)%(Filename)%(Extension)')"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

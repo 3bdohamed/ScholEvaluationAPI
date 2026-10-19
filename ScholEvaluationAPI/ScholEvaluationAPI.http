@@ -1,0 +1,460 @@
+@ScholEvaluationAPI_HostAddress = http://192.168.1.17:5100
+GET {{ScholEvaluationAPI_HostAddress}}/api/weatherforecast/
+Accept: application/json
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/authentication/login/
+Content-Type:application/json
+{
+  "name": "admin_manager",
+  "password": "superpassword123!"
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/authentication/login/teacher
+Content-Type:application/json
+{
+  "name": "1000000005",
+  "password": "667E2DAA"
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/authentication/login/student
+Content-Type:application/json
+{
+  "name": "465692081",
+  "password": "65C249A4"
+}
+###
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5fbWFuYWdlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1hbmFnZXIiLCJleHAiOjE3OTI1OTg3NTEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTEwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTEwMCJ9.0CHsXCX-1ZYlOPcQvr2Qv5ympJj229E413YWFdIKGbg
+@tokenstudent=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNDY1NjkyMDgxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3R1ZGVudCIsImV4cCI6MTc5MjQzODE2NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTAwIn0.zEqP1G5R_oUaHL71XNUnFWbHMgZ5ogkq2h8ftEfAPRM
+@tokenteacher=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjUiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTAwMDAwMDAwNSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlRlYWNoZXIiLCJleHAiOjE3OTI0NDMyNDIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTEwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTEwMCJ9.LYHBbuuztu6FFbRChM133uG4H_vNwcz5oWlP8yhjbs8
+Get {{ScholEvaluationAPI_HostAddress}}/api/students/
+Authorization:Bearer {{token}}
+accept: application/json
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/students/1
+Authorization:Bearer {{tokenstudent}}
+Accept: application/json
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/students/
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{ 
+  "name": "abdalrahman safwat",
+  "studentcode": "465692081",
+  "password":"a",
+  "studentclass": "secondary2",
+  "group": "A"
+}
+###
+put {{ScholEvaluationAPI_HostAddress}}/api/students/5002
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{ 
+  "id": 5002,
+  "name": "abdalrahman safwat",
+  "studentcode": "4666566693",
+  "password": "65C249A4",
+  "studentclass": "secondary2",
+  "group": "A"
+}
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/students/5003
+Authorization:Bearer {{token}}
+Content-Type:application/json
+{
+  "password":"9855DF32"
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/students/addclass
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+  "id":1,
+  "number":1,
+  "password":"65C249A4"
+}
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/students/removeclass
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+  "id":5002,
+  "number":2,
+  "password":"65C249A4"
+}
+###
+
+
+
+
+
+
+GET {{ScholEvaluationAPI_HostAddress}}/api/teacher
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/teacher/2
+Authorization:Bearer {{tokenteacher}}
+Accept:application/json
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/teacher/
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+    "subjectid":1,
+    "password":"a",
+    "teatchercode":"1000000005",
+    "lastname": "mervat",
+    "firstname": "mohammed",
+    "goverment": "suez",
+    "schoolname": "hessan moanes"
+}
+###
+PUT {{ScholEvaluationAPI_HostAddress}}/api/teacher/7002
+Content-Type: application/json
+{
+   "id": 7002,
+  "firstname": "ammar",
+  "teatchercode": "1000000000",
+  "lastname": "safwat",
+  "subjectid": 1002,
+  "subjects": {
+    "id": 1002,
+    "subjectName": "high level english",
+    "teacher": null
+  },
+  "subjectname": "high level english",
+  "goverment": "suez",
+  "schoolname": "Dr.hessan moanes",
+  "password": "2F9797F6"
+}
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/teacher/1
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+    "id":7003,
+    "password":"4A0D3DEC"
+}
+###
+Post {{ScholEvaluationAPI_HostAddress}}/api/teacher/addclass
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+    "id":5,
+    "number":1,
+    "password":"667E2DAA"
+}
+###
+Delete {{ScholEvaluationAPI_HostAddress}}/api/teacher/removeclass/
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+    "id":2002,
+    "password":"2F9797F6"
+}
+###
+
+
+
+
+
+
+
+
+
+
+GET {{ScholEvaluationAPI_HostAddress}}/api/subject/
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/subject/2
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/subject/
+Authorization:Bearer {{token}}
+Content-Type:application/json
+{
+  "subjectName":"history"
+}
+###
+PUT {{ScholEvaluationAPI_HostAddress}}/api/subject/1002
+Authorization:Bearer {{token}}
+Content-Type:application/json
+{
+  "Id":1002,
+  "subjectName":"high level english"
+}
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/subject/2002
+Authorization:Bearer {{token}}
+Content-Type:application/json
+{
+  "id":2002
+}
+###
+
+
+
+
+
+
+
+
+
+GET {{ScholEvaluationAPI_HostAddress}}/api/studentclass
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/studentclass/2
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/studentclass/
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+  "name":"2St/C",
+  "stage":"secondary2"
+}
+###
+PUT {{ScholEvaluationAPI_HostAddress}}/api/studentclass/2
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+  "id":2,
+  "name":"2St/A",
+  "stage":"secondary2"
+}
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/studentclass/1
+Authorization:Bearer {{token}}
+Content-Type: application/json
+{
+    "id":1
+}
+###
+
+
+
+
+
+
+
+
+
+
+GET {{ScholEvaluationAPI_HostAddress}}/api/exercise
+Authorization:Bearer {{tokenstudent}}
+Accept:application/json
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/exercise/15
+Authorization:Bearer {{tokenteacher}}
+Accept:application/json
+###
+Post {{ScholEvaluationAPI_HostAddress}}/api/exercise/
+Authorization:Bearer {{token}}
+Content-Type:application/json
+{
+  "type":"Evaluation A",
+  "stage":"secondary",
+  "classname":"secondary2",
+  "subjectid":1,
+  "evaluationNum":"2",
+  "paragraphs":[{
+    "qwrites":[{
+      "ask":"if one from your frinds ask help,what will be your action",
+      "type":"Other",
+      "answerexample":"i will hlp him",
+      "isJustify": false,
+      "degrees": 1
+    }],
+    "paragraphbody":"you must help,because if you help them when them need ,they will help you when you need",
+    "question":[{
+      "ask":"must you help people ,and why",
+      "option1":"no,because i will not benifit",
+      "option2":"yes,because i will benifit",
+      "option3":"no,because i will wast my time",
+      "option4":"yes,because i will take money from him",
+      "answer":"2"
+    }],
+    "title":"helping people"
+  }],
+  "question":[{
+      "ask":"must you help people ,and why",
+      "option1":"no,because i will not benifit",
+      "option2":"yes,because i will benifit",
+      "option3":"no,because i will wast my time",
+      "option4":"yes,because i will take money from him",
+      "answer":"2"
+    }],
+    "qwrites":[{
+      "ask":"if one from your frinds ask help,what will be your action",
+      "type":"Other",
+      "answerexample":"i will hlp him",
+      "isJustify": false,
+      "degrees": 1
+    }]
+}
+###
+PUT {{ScholEvaluationAPI_HostAddress}}/api/exercise/5
+Content-Type:application/json
+{
+  "id": 5,
+  "stage": "secondary",
+  "classname": "secondary1",
+  "subjectid": 2,
+  "subjects": {
+    "id": 2,
+    "subjectName": "History",
+    "teacher": null
+  },
+  "evaluationNum": "2",
+  "type": "Evaluation"
+}
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/exercise/15
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/exercise/question
+Accept:application/json
+Content-Type:application/json
+{
+  "id":5,
+  "number":1
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/exercise/question
+Authorization:Bearer {{token}}
+Accept:application/json
+Content-Type:application/json
+{
+  
+    "ask":"1 plus 1 equal",
+    "option1":"-1",
+    "option2":"0",
+    "option3":"1",
+    "option4":"2",
+    "answer":"4",
+    "exerciseid":100
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/exercise/paragraph
+Accept:application/json
+Content-Type:application/json
+{
+  
+
+      "title": "doing sport",
+      "paragraphbody": "doing sport is benifit for you",
+      "qwrites": [
+        {
+          "ask": "is doing sport benifit for you",
+          "type": "Rewrite",
+          "title": "example",
+          "answerexample": "yes,it is benifit for me"
+        }
+      ],
+      "question": [
+        {
+          "id": 3011,
+          "ask": "1 plus 1 equal",
+          "option1": "-1",
+          "option2": "0",
+          "option3": "1",
+          "option4": "2",
+          "answer": "4"
+        }
+      ],
+      "exerciseid":3006
+     
+}
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/exercise/paragraph
+Authorization:Bearer {{tokenteacher}}
+Content-Type:application/json
+{
+  "id":3006,
+  "number":5002
+
+
+     
+}
+###
+
+
+
+
+
+
+POST {{ScholEvaluationAPI_HostAddress}}/api/exercise/qwrite
+Accept:application/json
+Content-Type:application/json
+{
+          "ask": "is doing sport benifit for you",
+          "type": "Rewrite",
+          "title": "example",
+          "answerexample": "yes,it is benifit for me",
+          "exerciseid":3006
+}
+###
+DELETE {{ScholEvaluationAPI_HostAddress}}/api/exercise/qwrite
+Accept:application/json
+Content-Type:application/json
+{
+  "id":3006,
+  "number":3002
+     
+}
+###
+
+
+POST {{ScholEvaluationAPI_HostAddress}}/api/exercise/send
+Authorization:Bearer {{tokenstudent}}
+content-type:application/json
+{
+  "studentid":1,
+  "exerciseid": 13,
+  "stage": "secondary",
+  "classname": "secondary2",
+  "evaluationNum": "1",
+  "type": "Evaluation A",
+  "paragraphs":[{
+  "paragraphid":1,
+    "solvedquestion":[{
+          "chooseId":35,
+          "ask": "must you help people ,and why",
+          "option1": "no,because i will not benifit",
+          "option2": "yes,because i will benifit",
+          "option3": "no,because i will wast my time",
+          "option4": "yes,because i will take money from him",
+          "answer": "2",
+          "choiced":"2"
+    }],
+    "sqwrites":[{
+      "qweiteid":7,
+      "totaldegree":1
+      "answer":"i will help him"
+    }]
+  }],
+  "sqwrites":[],
+  "question":[]
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/teacher/open
+Authorization:Bearer {{tokenteacher}}
+content-type:application/json
+{
+  "id":1,
+  "number":17
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/teacher/open/many
+Authorization:Bearer {{tokenteacher}}
+content-type:application/json
+{
+  "ids":[1,2,3],
+  "number":17
+}
+###

@@ -1,0 +1,8 @@
+.vs/
+**/bin/
+**/obj/
+*.user
+ScholEvaluationAPI/frontend/node_modules/
+ScholEvaluationAPI/frontend/.next/
+ScholEvaluationAPI/frontend/out/
+ScholEvaluationAPI/wwwroot/

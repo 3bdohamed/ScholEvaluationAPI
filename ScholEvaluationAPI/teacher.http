@@ -1,0 +1,142 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@ScholEvaluationAPI_HostAddress = http://localhost:5100
+POST {{ScholEvaluationAPI_HostAddress}}/api/authentication/login/teacher
+Content-Type:application/json
+{
+  "name": "1000000000",
+  "password": "2F9797F6"
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/authentication/login/student
+Content-Type:application/json
+{
+  "name": "465692080",
+  "password": "A518D9C2"
+}
+###
+@tokenstudent=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNDY1NjkyMDgxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3R1ZGVudCIsImV4cCI6MTc5MjQzODE2NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTAwIn0.zEqP1G5R_oUaHL71XNUnFWbHMgZ5ogkq2h8ftEfAPRM
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNDY1NjkyMDgxIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3R1ZGVudCIsImV4cCI6MTc5MjQzODE2NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTAwIn0.zEqP1G5R_oUaHL71XNUnFWbHMgZ5ogkq2h8ftEfAPRM
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/solvedexercise/
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/solvedexercise/8
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/solvedexercise/
+authorization:Bearer {{token}}
+accept:application/json
+content-type:application/json
+{
+  "id": 8,
+  "exerciseid": 17,
+  "exercise": null,
+  "correctanswer": 2,
+  "totalanswer": 4,
+  "question": [
+    {
+      "id": 17,
+      "ask": "must you help people ,and why",
+      "option1": "no,because i will not benifit",
+      "option2": "yes,because i will benifit",
+      "option3": "no,because i will wast my time",
+      "option4": "yes,because i will take money from him",
+      "answer": "2",
+      "choiced": "2",
+      "isCorrect": true,
+      "solvedExerciseId": 8,
+      "solvedExercise": null,
+      "chooseId": 41,
+      "choose": null
+    }
+  ],
+  "sqwrites": [
+    {
+      "id": 6,
+      "answer": "a",
+      "ask": null,
+      "type": null,
+      "title": null,
+      "answerexample": null,
+      "totaldegree": 1,
+      "correctdegree": 1,
+      "qweiteid": 12,
+      "qwrite": null,
+      "solvedexerciseid": 8,
+      "solvedexercisee": null,
+      "sparagraphid": null,
+      "sparagraphh": null
+    }
+  ],
+  "paragraphs": [
+    {
+      "id": 3,
+      "title": null,
+      "paragraphbody": null,
+      "sqwrites": [
+        {
+          "id": 7,
+          "answer": "a",
+          "ask": null,
+          "type": null,
+          "title": null,
+          "answerexample": null,
+          "totaldegree": 1,
+          "correctdegree": 1,
+          "qweiteid": 13,
+          "qwrite": null,
+          "solvedexerciseid": null,
+          "solvedexercisee": null,
+          "sparagraphid": 3,
+          "sparagraphh": null
+        }
+      ],
+      "paragraphid": 5,
+      "paragraph": null,
+      "solvedquestion": [
+        {
+          "id": 18,
+          "ask": "must you help people ,and why",
+          "option1": "no,because i will not benifit",
+          "option2": "yes,because i will benifit",
+          "option3": "no,because i will wast my time",
+          "option4": "yes,because i will take money from him",
+          "answer": "2",
+          "choiced": "2",
+          "isCorrect": true,
+          "solvedExerciseId": null,
+          "solvedExercise": null,
+          "chooseId": 42,
+          "choose": null
+        }
+      ],
+      "solvedexerciseid": 8,
+      "solvedExercise": null,
+      "totaldegree": 0,
+      "correctdegree": 0
+    }
+  ],
+  "studentid": 1,
+  "student": {
+    "id": 1,
+    "name": "abdalrahman safwat",
+    "studentcode": "465692081",
+    "password": "65C249A4",
+    "studentclass": "secondary2",
+    "group": "A",
+    "authority": "17",
+    "create_at": "2026-10-13T20:00:03.5151484",
+    "authorityDate": "2026-10-16T22:25:00.3833583",
+    "closetime": "2026-10-16T23:10:00.3833583",
+    "solvedexercises": [
+      null
+    ],
+    "studentclasses": null
+  },
+  "type": "Evaluation A",
+  "iscorrected": null,
+  "senddate": "2026-10-16T22:25:37.0425613"
+}
+###

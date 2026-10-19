@@ -1,0 +1,125 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@ScholEvaluationAPI_HostAddress = http://localhost:5100
+POST {{ScholEvaluationAPI_HostAddress}}/api/authentication/login/teacher
+Content-Type:application/json
+{
+  "name": "1000000000",
+  "password": "2F9797F6"
+}
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/authentication/login/student
+Content-Type:application/json
+{
+  "name": "465692080",
+  "password": "A518D9C2"
+}
+###
+@tokenstudent=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjUwMDIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNDY1NjkyMDgwIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiU3R1ZGVudCIsImV4cCI6MTc5MDk2NTg4NiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTAwIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo1MTAwIn0.qJCDCpyPZOlJ8EjiEU3LftfJkYqyJEVpCqdTA4XzNZA
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjcwMDIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTAwMDAwMDAwMCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlRlYWNoZXIiLCJleHAiOjE3OTE0ODEyNzgsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTEwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTEwMCJ9.zt80AEx65jiMAPh92xBdSUe4Q-CEhAbgW0THf15vb84
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/solvedexercise/
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+GET {{ScholEvaluationAPI_HostAddress}}/api/solvedexercise/3002
+Authorization:Bearer {{token}}
+Accept:application/json
+###
+POST {{ScholEvaluationAPI_HostAddress}}/api/solvedexercise/
+authorization:Bearer {{token}}
+accept:application/json
+content-type:application/json
+{
+  "id": 3002,
+  "exerciseid": 6002,
+  "exercise": null,
+  "correctanswer": 4,
+  "totalanswer": 4,
+  "question": [
+    {
+      "id": 3002,
+      "ask": "1 plus 1 equal",
+      "option1": "-1",
+      "option2": "0",
+      "option3": "1",
+      "option4": "2",
+      "answer": "4",
+      "choiced": "4",
+      "isCorrect": true,
+      "solvedExerciseId": 3002,
+      "solvedExercise": null,
+      "chooseId": 6002,
+      "choose": null
+    }
+  ],
+  "sqwrites": [
+    {
+      "id": 3002,
+      "answer": "2",
+      "ask": null,
+      "type": null,
+      "title": null,
+      "answerexample": null,
+      "totaldegree": 2,
+      "correctdegree": 1,
+      "qweiteid": 6002,
+      "qwrite": null,
+      "solvedexerciseid": 3002,
+      "solvedexercisee": null,
+      "sparagraphid": null,
+      "sparagraphh": null
+    }
+  ],
+  "paragraphs": [
+    {
+      "id": 2002,
+      "title": null,
+      "paragraphbody": null,
+      "sqwrites": [
+        {
+          "id": 3003,
+          "answer": "social media is a platform that allows users to create and share content or to participate in social networking.",
+          "ask": null,
+          "type": null,
+          "title": null,
+          "answerexample": null,
+          "totaldegree": 2,
+          "correctdegree": 1,
+          "qweiteid": 6003,
+          "qwrite": null,
+          "solvedexerciseid": null,
+          "solvedexercisee": null,
+          "sparagraphid": 2002,
+          "sparagraphh": null
+        }
+      ],
+      "paragraphid": 5002,
+      "paragraph": null,
+      "solvedquestion": [
+        {
+          "id": 3003,
+          "ask": "1 plus 1 equal",
+          "option1": "-1",
+          "option2": "0",
+          "option3": "1",
+          "option4": "2",
+          "answer": "4",
+          "choiced": "4",
+          "isCorrect": true,
+          "solvedExerciseId": null,
+          "solvedExercise": null,
+          "chooseId": 6003,
+          "choose": null
+        }
+      ],
+      "solvedexerciseid": 3002,
+      "solvedExercise": null,
+      "totaldegree": 0,
+      "correctdegree": 0
+    }
+  ],
+  "studentid": 5002,
+  "student": null,
+  "type": "Evaluation A"
+}
+###
