@@ -14,7 +14,12 @@ interface Student {
   studentclasses?: {
     id?: number;
     name?: string | null;
-    stage?: string | null;
+      stage?: string | null;
+      teatcherstudents: {
+          teacher: {
+              subjects: Subject;
+          };
+      }[];
   } | null;
   group: string;
   password: string;
@@ -327,7 +332,8 @@ export default function ManageStudentsPage() {
         throw new Error("The subject list returned an unexpected response.");
       }
       const exercises = rawExercises as Exercise[];
-      const subjects = rawSubjects as Subject[];
+        const subjects1 = rawSubjects as Subject[];
+        const subjects = rawDetails.studentclasses?.teatcherstudents?.map((ts) => ts?.teacher?.subjects) as Subject[];
       const student = rawDetails;
       const assignedExercises = exercises.filter((exercise) =>
         exercise.classname === student.studentclass
