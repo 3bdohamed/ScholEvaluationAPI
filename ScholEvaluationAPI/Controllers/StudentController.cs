@@ -92,7 +92,7 @@ namespace ScholEvaluationAPI.Controllers
             else
             {
                 student student = _context.students
-                    .Include(s => s.studentclasses.teatcherstudents)
+                    .Include(s => s.studentclasses.teatcherstudents).ThenInclude(s => s.teacher.subjects)
                     .Include(s => s.solvedexercises)
                     .Include(s => s.solvedexercises).ThenInclude(s => s.paragraphs).ThenInclude(s => s.sqwrites)
                     .Include(s => s.solvedexercises).ThenInclude(s => s.paragraphs).ThenInclude(s => s.solvedquestion)
