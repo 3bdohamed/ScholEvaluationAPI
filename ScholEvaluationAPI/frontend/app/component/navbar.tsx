@@ -90,7 +90,7 @@ export default function Navbar() {
         <Link href="/" className="hover:text-blue-600 transition-colors">
           School Evaluations</Link>
       </div>
-      <div className="flex items-center gap-4 sm:gap-6 font-medium text-gray-600 dark:text-gray-300">
+      <div className="flex items-center gap-2 sm:gap-3 font-medium text-gray-600 dark:text-gray-300">
         <button
           type="button"
           onClick={toggleTheme}
@@ -102,7 +102,7 @@ export default function Navbar() {
         </button>
         {handleToggle()}
 
-        <Link href="/about" className="hover:text-blue-600 transition-colors">About</Link>
+          <Link href="/about" className="hover:text-blue-600 transition-colors">About</Link> 
         <button
           onClick={handleLangChange}
           className="px-3 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
