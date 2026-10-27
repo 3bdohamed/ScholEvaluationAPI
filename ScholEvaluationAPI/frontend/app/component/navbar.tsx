@@ -24,6 +24,7 @@ function subscribeToTheme(onThemeChange: () => void): () => void {
 
 export default function Navbar() {
   const [islogin, setislogin] = useState(false);
+  const [lang, setLang] = useState("en");
   const theme = useSyncExternalStore(subscribeToTheme, getTheme, () => "light");
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -74,6 +75,15 @@ export default function Navbar() {
       return <Link href="/login" className="hover:text-blue-600 transition-colors">Login</Link>
     }
   }
+  const handleLangChange = () => {
+    const newLang = lang === "en" ? "ar" : "en";
+    setLang(newLang);
+    if (typeof window !== "undefined") {
+      document.documentElement.lang = newLang;
+      document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+    }
+  };
+
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-white dark:bg-slate-900 shadow-md border-b border-gray-100 dark:border-slate-800">
       <div className="text-xl font-bold text-gray-900 dark:text-gray-100">
@@ -93,6 +103,13 @@ export default function Navbar() {
         {handleToggle()}
 
         <Link href="/about" className="hover:text-blue-600 transition-colors">About</Link>
+        <button
+          onClick={handleLangChange}
+          className="px-3 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+          aria-label="Change language"
+        >
+          {lang === "en" ? "العربية" : "English"}
+        </button>
       </div>
     </nav>
   )
