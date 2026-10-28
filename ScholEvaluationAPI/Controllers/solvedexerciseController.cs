@@ -64,9 +64,9 @@ namespace ScholEvaluationAPI.Controllers
             {
                 var teacher = _context.Teachers.FirstOrDefault(t => t.id == Convert.ToInt16(userId));
                 var solvedexercise = _context.Solvedexercise
-                    .Include(e => e.sqwrites)
+                    .Include(e => e.sqwrites).ThenInclude(e=>e.qwrite)
                     .Include(e => e.question)
-                    .Include(e => e.paragraphs).ThenInclude(e => e.sqwrites)
+                    .Include(e => e.paragraphs).ThenInclude(e => e.sqwrites).ThenInclude(e => e.qwrite)
                     .Include(e => e.paragraphs).ThenInclude(e => e.solvedquestion)
                     .Where(e => e.exercise.subjectid == teacher.subjectid)
                     .Where(e => e.student.studentclasses.teatcherstudents.FirstOrDefault(e => e.teacherId == teacher.id) != null)
@@ -82,7 +82,7 @@ namespace ScholEvaluationAPI.Controllers
                 var solvedexercise = _context.Solvedexercise
                     .Include(e => e.sqwrites)
                     .Include(e => e.question)
-                    .Include(e => e.paragraphs).ThenInclude(e => e.sqwrites)
+                    .Include(e => e.paragraphs).ThenInclude(e => e.sqwrites).ThenInclude(e => e.qwrite)
                     .Include(e => e.paragraphs).ThenInclude(e => e.solvedquestion)
                     .Where(e => e.studentid == student.id)
                     .FirstOrDefault(e=>e.id==id);
